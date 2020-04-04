@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="login-area">
+    <div>
         <h1 class="text-center">Welcome To MH Bank</h1>
-        <div class="submit-area">
+        <div id="login-area" class="submit-area">
             <h4>Login</h4>
             <input type="text" class="form-control" placeholder="Email">
             <br>
@@ -19,12 +19,74 @@
             <button id="login" class="btn btn-success">Enter</button>
         </div>
     </div>
+    <div>
+        <h3 id="transaction-area" class="text-center">Transaction</h3>
+    </div>
+    <div id="transaction-area1">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h2>$<span id="currentDeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$00</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$1500</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                    <input id="depositAmount" type="text" class="form-control" placeholder="$ amount you want to deposit">
+                    <br>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input type="text" class="form-control" placeholder="$ amount you want to withdraw">
+                    <br>
+                    <button class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <script>
         const loginBtn = document.getElementById("login");
-        loginBtn.addEventListener("mouseleave", function(){
-            console.log("I was clicked.");
+        loginBtn.addEventListener("click", function(){
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display = "none";
+            const transactionArea = document.getElementById("transaction-area");
+            transactionArea.style.display = "block";
+            const transactionArea1 = document.getElementById("transaction-area1");
+            transactionArea1.style.display = "block";
         })
+        const depositBtn = document.getElementById("addDeposit");
+        depositBtn.addEventListener("click", function(){
+        const depositAmount = document.getElementById("depositAmount").value;
+        const depositNumber = parseFloat(depositAmount);
 
+
+        const currentDeposit = document.getElementById("currentDeposit").innerText;  
+        const currentDepositNumber = parseFloat(currentDeposit);
+        const totalDeposit = depositNumber + currentDepositNumber;
+        document.getElementById("currentDeposit").innerText = totalDeposit;
+        document.getElementById("depositAmount").value = "";
+        })
+        
+        
         
     </script>
 </body>
